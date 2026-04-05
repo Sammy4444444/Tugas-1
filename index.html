@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waguri Kaoruko Fanbase</title>
+<link rel="stylesheet" href="style.css">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+
+<body class="bg-gradient-to-b from-pink-100 via-white to-pink-200">
+
+<div class="sakura-container"></div>
+<img src="img/waguri1.png" class="decor-left">
+<img src="img/waguri2.png" class="decor-right">
+
+
+<div class="music-player">
+
+<button id="prev-btn">⏮</button>
+
+<button id="music-btn">▶</button>
+
+<button id="next-btn">⏭</button>
+
+<div class="progress-container">
+<div id="progress-bar"></div>
+</div>
+
+<span id="current-time">0:00</span>
+<span>/</span>
+<span id="duration">0:00</span>
+
+<div class="volume-box">
+
+<i class="fa-solid fa-volume-high volume-icon"></i>
+
+<input type="range" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+
+</div>
+
+<audio id="bg-music"></audio>
+
+</div>
+
+
+<nav class="fixed w-full top-0 z-50 bg-white/10 backdrop-blur-md flex justify-between items-center px-6 py-4 text-black">
+<div class="logo">Waguri Kaoruko</div>
+
+<div class="menu-toggle">☰</div>
+
+<div class="nav-menu flex gap-6">
+<a href="#">Home</a>
+<a href="#about">About</a>
+<a href="#gallery">Gallery</a>
+<a href="#fanart">Fanart</a>
+<a href="#community">Community</a>
+</div>
+
+</nav>
+
+<section id="hero" class="relative h-screen flex items-center justify-center text-center text-white overflow-hidden">
+
+<img src="img/waguri4.jpg" class="absolute w-full h-full object-cover brightness-50">
+
+<div class="relative z-10">
+<h2 class="text-5xl md:text-6xl font-bold drop-shadow-[0_0_25px_pink]">
+Waguri Kaoruko Fanbase
+</h2>
+
+<p class="mt-4 text-lg">
+Soft • Kind • Beautiful
+</p>
+
+<a href="#community"
+class="inline-block mt-6 bg-pink-500 hover:bg-pink-600 px-6 py-3 rounded-full shadow-lg transition">
+Join Fanbase
+</a>
+</div>
+
+</section>
+
+<section id="about" class="reveal max-w-5xl mx-auto px-6 py-16 bg-white/30 backdrop-blur-md rounded-2xl shadow-lg">
+
+<h2>About Waguri</h2>
+
+<p>
+English:Waguri Kaoruko is one of the most beloved characters known for her gentle
+personality and adorable smile. Many fans admire her kindness and aesthetic charm.
+indonesia:Waguri Kaoruko adalah salah satu karakter yang paling dicintai,
+dikenal karena kepribadiannya yang lembut dan senyumnya yang menggemaskan.
+Banyak penggemar mengagumi kebaikan dan pesona estetiknya.
+</p>
+</section>
+
+<section id="gallery" class="reveal max-w-5xl mx-auto px-6 py-16 bg-white/30 backdrop-blur-md rounded-2xl shadow-lg" ">
+
+
+<h2>Gallery</h2>
+
+<div class="lightbox" id="lightbox">
+<img src="">
+</div>
+
+<div class="rounded-xl hover:scale-110 hover:rotate-1 transition duration-300 cursor-pointer shadow-md hover:shadow-pink-300">
+<img src="img/wagurikaoruko1.png"
+class="rounded-xl hover:scale-110 hover:rotate-1 transition duration-300 cursor-pointer shadow-md">
+<img src="img/wagurikaoruko2.png"
+class="rounded-xl hover:scale-110 hover:rotate-1 transition duration-300 cursor-pointer shadow-md">
+<img src="img/wagurikaoruko3.png"
+class="rounded-xl hover:scale-110 hover:rotate-1 transition duration-300 cursor-pointer shadow-md">
+<img src="img/waguribackground.png"
+class="rounded-xl hover:scale-110 hover:rotate-1 transition duration-300 cursor-pointer shadow-md">
+</div>
+
+</section>
+
+<section id="fanart" class="reveal max-w-5xl mx-auto px-6 py-16 bg-white/30 backdrop-blur-md rounded-2xl shadow-lg">
+<h2>Fanart</h2>
+<p>Fanarts from the community celebrating Waguri Kaoruko.
+    Fanart dari komunitas merayakan/mencintai Waguri Kaoruko.
+</p>
+</section>
+
+<section id="community" class="reveal max-w-5xl mx-auto px-6 py-16 bg-white/30 backdrop-blur-md rounded-2xl shadow-lg">
+
+<h2>Community</h2>
+
+<div class="links">
+<a href="#">Discord</a>
+<a href="#">Twitter</a>
+<a href="#">Reddit</a>
+</div>
+
+</section>
+
+<footer>
+<p>© Waguri Kaoruko Fanbase</p>
+</footer>
+
+
+<script src="script.js"></script>
+<script>
+
+const menuToggle = document.querySelector(".menu-toggle")
+const navMenu = document.querySelector(".nav-menu")
+
+menuToggle.onclick = () => {
+navMenu.classList.toggle("active")
+}
+
+const images = document.querySelectorAll("#gallery img")
+const lightbox = document.getElementById("lightbox")
+const lightboxImg = lightbox.querySelector("img")
+
+images.forEach(img=>{
+img.onclick = ()=>{
+lightbox.style.display = "flex"
+lightboxImg.src = img.src
+}
+})
+
+lightbox.addEventListener("click", (e) => {
+  if(e.target !== lightboxImg){
+    lightbox.style.display = "none"
+  }
+})
+
+
+function reveal(){
+
+const reveals = document.querySelectorAll(".reveal")
+
+for(let i=0;i<reveals.length;i++){
+
+const windowHeight = window.innerHeight
+const revealTop = reveals[i].getBoundingClientRect().top
+const revealPoint = 100
+
+if(revealTop < windowHeight - revealPoint){
+reveals[i].classList.add("active")
+
+
+
+}
+
+}
+
+}
+
+window.addEventListener("scroll",reveal)
+
+
+
+
+
+</script>
+
+
+</body>
+</html>
